@@ -5,9 +5,9 @@
 const path = require('path')
 const os = require('os');
 const networkInterfaces = os.networkInterfaces();
-var ip;
+let ip;
 
-for (var key in networkInterfaces) {
+for (let key in networkInterfaces) {
   networkInterfaces[key].forEach(item => {
     if (!item.internal && item.family === 'IPv4') {
       ip = item.address;

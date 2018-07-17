@@ -4,6 +4,8 @@
     <input type="number" v-model.number="num" placeholder="请输入"/>
     <p>{{num}}</p>
     <btn :toNum="num"></btn>
+
+    <input type="file" id="file" @change="getPic()"/>
   </section>
 </template>
 
@@ -28,6 +30,25 @@
     },
     components: { Btn },
     methods: {
+      getPic () {
+        var input = document.getElementById("file");
+        //读取图片数据
+        var f = input.files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          var data = e.target.result;
+          //加载图片获取图片真实宽度和高度
+          var image = new Image();
+          image.onload=function(){
+            var width = image.width;
+            var height = image.height;
+            console.log(width+'======'+height+"====="+f.size);
+          };
+          image.src= data;
+        };
+        reader.readAsDataURL(f);
+      },
+
       toPage () {
         this.$store.dispatch('setUserInfo', '陈国栋')
         this.$router.push({path: '/login',query: {id: 101, name: 'chen'}})

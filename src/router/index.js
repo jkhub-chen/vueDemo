@@ -6,7 +6,17 @@ import routers from './routers'
 
 Vue.use(Router);
 
-const vueRouter = new Router(routers);
+const vueRouter = new Router({
+  mode: 'history',
+  routes: routers,
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return {x: 0, y: 0}
+    }
+  }
+});
 
 vueRouter.beforeEach((to, from, next) => {
   document.title = to.meta.title;   //title修改

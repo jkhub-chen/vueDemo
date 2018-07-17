@@ -52,6 +52,7 @@
   img{display:block;width:100%}
 
   /*mintUi优化*/
+
   /*Toast*/
   .mint-toast{max-width: 90%;background: rgba(0, 0, 0, 0.6)}
   .mint-toast .mint-toast-text{line-height: 20px}

@@ -1,8 +1,3 @@
-// import Home from '../views/home'
-// import Login from '../views/login'
-//
-// import NotFoundComponent from '../views/404'
-
 const Home = () => import('../views/home')
 const Login = () => import('../views/login')
 

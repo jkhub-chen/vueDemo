@@ -3,9 +3,14 @@
  */
 import Qs from 'qs'
 
-const token = localStorage.getItem('loginToken')
-//const apiRoot = location.origin;                    //提测
-const apiRoot = 'https://api.gocfae.com';
+let token = '';
+let apiRoot = '';
+let hostUrl = window.location.origin;
+
+let getToken = localStorage.getItem('loginToken');
+if(getToken){
+  token = getToken
+}
 
 export default {
   //请求的接口，在请求的时候，如axios.get(url,config);这里的url会覆盖掉config中的url
@@ -20,7 +25,7 @@ export default {
 
   // `headers` 是即将被发送的自定义请求头
   headers: {
-    loginToken: token
+    authorization: token
   },
 
   // `params` 是即将与请求一起发送的 URL 参数
@@ -61,7 +66,7 @@ export default {
   // 如果请求话费了超过 `timeout` 的时间，请求将被中断
   timeout: 8000,
 
-  // `validateStatus` 定义对于给定的HTTP 响应状态码是 resolve 或 reject  promise 。如果 `validateStatus` 返回 `true` (或者设置为 `null` 或 `undefined`)，promise 将被 resolve; 否则，promise 将被 rejecte
+  // `validateStatus` 定义对于给定的HTTP 响应状态码是 resolve 或 reject  promise 。如果 `validateStatus` 返回 `true` (或者设置为 `null` 或 `undefined`)，promise 将被 resolve; 否则，promise 将被 reject
   validateStatus: function (status) {
     return status >= 200 && status < 300; // 默认的
   },

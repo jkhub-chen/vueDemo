@@ -1,24 +1,22 @@
 import axios from 'axios'
-import config from './config'
+import axiosConfig from './config'
 import { Indicator, Toast } from 'mint-ui';
 
-// axios.defaults.baseURL = 'http://dev-care-api.lanxinka.com';
-// axios.defaults.headers.common['loginToken'] = '9d09888e76c26710a8712a580dd889ed';
+const instance = axios.create(axiosConfig);
 
 //请求拦截器
-axios.interceptors.request.use(config => {
-  Indicator.open({text: '努力中...', spinnerType: 'fading-circle'});
-  console.log(config)
+instance.interceptors.request.use(config => {
+  Indicator.open({text: '努力中...', spinnerType: 'fading-circle'});  // 请求数据时开始loading
   return config;
 }, error => {
   return Promise.reject(error);
 });
 
 //返回拦截器
-axios.interceptors.response.use(response => {
+instance.interceptors.response.use(response => {
   //服务器响应并返回数据
-  Indicator.close();
-  if (response.data.code === '0000') {
+  Indicator.close();  // 返回数据时关闭loading
+  if (response.data.code === 0) {
     // 判断data不是Object时，解析成Object
     if (!(response.data instanceof Object)) {
       return Promise.resolve(JSON.parse(response.data));
@@ -26,56 +24,23 @@ axios.interceptors.response.use(response => {
       return Promise.resolve(response.data);
     }
   } else {
-    if (response.data.code === 'A001') {
-      Toast({message: response.data.message, duration: 2000});
-    }
+    Toast({message: response.data.msg, duration: 2000});  // 返回业务特殊的业务code
     return false
   }
 }, error => {
-  Indicator.close();
+  Indicator.close();  // 返回报错时关闭loading
   if (error.response) {
     if(error.response.status === 404){
-      vm.$router.replace({name: 'NotFoundComponent'})
+      vm.$router.replace({name: 'NotFoundHTML'})
+    }else{
+      Toast({message: error.response.statusText, duration: 2000});
     }
-    return Promise.reject(error.response);
   } else {
     //服务器未响应
-    Toast({message: '服务器未响应', duration: 2000});
-    return false
+    Toast({message: '服务器未响应，请稍后重试！', duration: 2000});
   }
+  return false
 });
 
-class API {
-  get (url, params) {
-    config.params = params;
-    return axios.get(url, config).then(function(data){
-      return data;
-    }).catch(err => {
-      if(err){
-        console.log(err.response)
-      }
-    });
-  }
-
-  post (url, params) {
-    return axios.post(url, params, config).then(function(data){
-      return data;
-    }).catch(err => {
-      if(err){
-        console.log(err.response)
-      }
-    });
-  }
-
-  //批处理接口
-  batSync (params) {
-    return axios.all(params,{},config).then(axios.spread(function(acc,pers){
-      console.log(acc,pers)
-    }));
-  }
-}
-
-const apiRoot = new API();
-
-export default apiRoot;
+export default instance;
 

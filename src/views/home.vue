@@ -5,17 +5,17 @@
 </template>
 
 <script>
+  import { getNewList } from '../api/apiRoot'
   import Btn from '../components/btn'
-  import { Toast, Indicator } from 'mint-ui';
 
   export default {
     data () {
       return {}
     },
     created () {
-      // this.http.post('/cust/info/perDetailInfo').then(data => {
-      //   console.log(data)
-      // });
+      getNewList().then(res => {
+        console.log(res)
+      })
     },
     components: { Btn },
     methods: {

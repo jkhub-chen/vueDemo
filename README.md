@@ -3,9 +3,9 @@
 2、npm run start（开启本地服务，以本机ip的形式抛出链接）
 
 3、使用cross-env分环境打包，构建项目将生成dist文件夹
-1）npm run dev（适用于开发环境）
-2）npm run test（适用于测试环境）
-3）npm run prod（适用于生产环境）
+* npm run dev（适用于开发环境）
+* npm run test（适用于测试环境）
+* npm run prod（适用于生产环境）
 
 
 * 引入vue-router编写前端路由，使用history模式并实现了路由的懒加载；

@@ -2,11 +2,20 @@
  * Created by chenguodong on 2017/5/10.
  */
 import Qs from 'qs'
+let env = process.env.NODE_ENV
+let apiRoot = {
+  production: {
+    BASE_URL: 'http://admin-api.koubeigongzuo.com'
+  },
+  test: {
+    BASE_URL: 'http://job-admin-api.st1.test.lanxinka.com'
+  },
+  development: {
+    BASE_URL: 'http://admin-api.msx.dev.lanxinka.com'
+  }
+}[env]
 
 let token = '';
-let apiRoot = '';
-let hostUrl = window.location.origin;
-
 let getToken = localStorage.getItem('loginToken');
 if(getToken){
   token = getToken
@@ -21,7 +30,7 @@ export default {
 
   // `baseURL` 将自动加在 `url` 前面，除非 `url` 是一个绝对 URL。
   // 它可以通过设置一个 `baseURL` 便于为 axios 实例的方法传递相对 URL
-  baseURL: apiRoot,
+  baseURL: apiRoot.BASE_URL,
 
   // `headers` 是即将被发送的自定义请求头
   headers: {

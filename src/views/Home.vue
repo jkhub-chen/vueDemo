@@ -6,7 +6,7 @@
 
 <script>
   import { getNewList } from '../api/apiRoot'
-  import Btn from '../components/btn'
+  import Btn from '../components/Btn'
 
   export default {
     data () {

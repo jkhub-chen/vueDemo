@@ -1,5 +1,5 @@
-const Home = () => import('../views/home')
-const Login = () => import('../views/login')
+const Home = () => import('../views/Home')
+const Login = () => import('../views/Login')
 
 const NotFoundHTML = () => import('../views/404')
 

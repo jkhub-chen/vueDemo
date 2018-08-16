@@ -3,9 +3,18 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
+const NODE_ENV = process.env.NODE_ENV
 const os = require('os');
 const networkInterfaces = os.networkInterfaces();
-let ip;
+let env, ip;
+
+if(NODE_ENV === 'production'){
+  env = require('./prod.env')
+}else if(NODE_ENV === 'test'){
+  env = require('./test.env')
+}else{
+  env = require('./dev.env')
+}
 
 for (let key in networkInterfaces) {
   networkInterfaces[key].forEach(item => {
@@ -17,6 +26,7 @@ for (let key in networkInterfaces) {
 
 module.exports = {
   dev: {
+    env: env,
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
@@ -47,6 +57,7 @@ module.exports = {
   },
 
   build: {
+    env: env,
     // Template for index.html
     index: path.resolve(__dirname, '../dist/index.html'),
 
@@ -59,7 +70,7 @@ module.exports = {
      * Source Maps
      */
 
-    productionSourceMap: true,
+    productionSourceMap: false,
     // https://webpack.js.org/configuration/devtool/#production
     devtool: '#source-map',
 
@@ -67,7 +78,7 @@ module.exports = {
     // Surge or Netlify already gzip all static assets for you.
     // Before setting to `true`, make sure to:
     // npm install --save-dev compression-webpack-plugin
-    productionGzip: false,
+    productionGzip: true,
     productionGzipExtensions: ['js', 'css'],
 
     // Run the build command with an extra argument to

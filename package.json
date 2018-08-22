@@ -11,8 +11,7 @@
     "prod": "cross-env NODE_ENV=production node build/build.js"
   },
   "dependencies": {
-    "mint-ui": "^2.2.13",
-    "vue-wechat-title": "^2.0.4"
+    "mint-ui": "^2.2.13"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

@@ -1,6 +1,6 @@
-import axios from 'axios'
+// import axios from 'axios'
 import axiosConfig from './config'
-import { Indicator, Toast } from 'mint-ui';
+import { Toast, Indicator } from 'mint-ui';
 
 const instance = axios.create(axiosConfig);
 

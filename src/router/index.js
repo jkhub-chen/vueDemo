@@ -1,12 +1,12 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+// import Vue from 'vue'
+// import Router from 'vue-router'
 import { Toast } from 'mint-ui';
 
 import routers from './routers'
 
-Vue.use(Router);
+// Vue.use(Router);
 
-const vueRouter = new Router({
+const router = new VueRouter({
   mode: 'history',
   routes: routers,
   scrollBehavior (to, from, savedPosition) {
@@ -18,7 +18,7 @@ const vueRouter = new Router({
   }
 });
 
-vueRouter.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => {
   document.title = to.meta.title;   //title修改
   if(navigator.onLine){
     next();
@@ -32,4 +32,4 @@ vueRouter.beforeEach((to, from, next) => {
 //   console.log(to)
 // });
 
-export default vueRouter
+export default router

@@ -13,11 +13,8 @@
 </script>
 
 <style>
-  .fade-enter-active,
-  .fade-leave-active {transition: all .2s ease}
-
-  .fade-enter,
-  .fade-leave-active {opacity: 0}
+  .fade-enter-active, .fade-leave-active {transition: all .2s ease}
+  .fade-enter, .fade-leave-active {opacity: 0}
 
 
   /*全局样式初始化*/
@@ -31,7 +28,7 @@
   img{border:0;width:100%;margin:0;padding:0}
   input,textarea{outline:0;font-size:28px;color:#666}
   input:-webkit-autofill,textarea:-webkit-autofill,select:-webkit-autofill{background-color:#fff !important;}
-  input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{font-size:28px;color:#999}  /*-webkit和-moz要分开写*/
+  input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{font-size:28px;color:#999}
   input:-moz-placeholder,textarea:-moz-placeholder{font-size:28px;color:#999}
   strong,em{font-style:normal}
   ol,ul{list-style:none}

@@ -1,6 +1,7 @@
 <template>
   <section class="home">
-    <p @click="toPage">去登录</p>
+    <p @click="toPage" style="font-size: 50px">去登录</p>
+    <span style="display: inline-block;background-color: green;border-radius: 20px;width: 100px;height: 60px">ddd</span>
   </section>
 </template>
 

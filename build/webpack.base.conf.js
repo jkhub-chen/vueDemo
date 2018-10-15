@@ -10,7 +10,7 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-
+console.log(process.env.NODE_ENV)
 
 module.exports = {
   context: path.resolve(__dirname, '../'),
@@ -89,10 +89,10 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('common.js'),
-    new webpack.ProvidePlugin({
-      jQuery: "jquery",
-      $: "jquery"
-    })
+    // new webpack.optimize.CommonsChunkPlugin('common.js'),
+    // new webpack.ProvidePlugin({
+    //   jQuery: "jquery",
+    //   $: "jquery"
+    // })
   ]
 }

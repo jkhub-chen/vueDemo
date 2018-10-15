@@ -8,6 +8,8 @@ const os = require('os');
 const networkInterfaces = os.networkInterfaces();
 let env, ip;
 
+console.log(NODE_ENV,'dds')
+
 if(NODE_ENV === 'production'){
   env = require('./prod.env')
 }else if(NODE_ENV === 'test'){
@@ -26,7 +28,6 @@ for (let key in networkInterfaces) {
 
 module.exports = {
   dev: {
-    env: env,
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
